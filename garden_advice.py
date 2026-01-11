@@ -1,22 +1,53 @@
 """
 Garden Advice App
-Provides gardening tips based on the month and season.
+Provides gardening advice based on the current month.
 
-TODO:
-- Create functions instead of using all logic in one block
-- Replace hardcoded values with data structures
-- Add more detailed documentation and comments
+This version uses a dictionary to store seasons and advice,
+making it easier to maintain and extend. Clear comments and
+docstrings have been added.
 """
 
-month = input("Enter the current month: ").lower()
+SEASON_ADVICE = {
+    "summer": {
+        "months": ["december", "january", "february"],
+        "advice": "Water plants regularly and mulch to retain moisture."
+    },
+    "autumn": {
+        "months": ["march", "april", "may"],
+        "advice": "Start pruning and prepare soil for winter."
+    },
+    "winter": {
+        "months": ["june", "july", "august"],
+        "advice": "Protect plants from frost and reduce watering."
+    },
+    "spring": {
+        "months": ["september", "october", "november"],
+        "advice": "Plant new seeds and fertilize the soil."
+    }
+}
 
-if month in ["december", "january", "february"]:
-    print("It's summer. Water plants regularly and mulch to retain moisture.")
-elif month in ["march", "april", "may"]:
-    print("It's autumn. Start pruning and prepare soil for winter.")
-elif month in ["june", "july", "august"]:
-    print("It's winter. Protect plants from frost and reduce watering.")
-elif month in ["september", "october", "november"]:
-    print("It's spring. Plant new seeds and fertilize the soil.")
-else:
-    print("Invalid month entered.")
+
+def get_garden_advice(month: str) -> str:
+    """
+    Return gardening advice based on the month provided.
+
+    Args:
+        month (str): Name of the month (lowercase)
+
+    Returns:
+        str: Advice for gardening
+    """
+    for season in SEASON_ADVICE.values():
+        if month in season["months"]:
+            return season["advice"]
+    return "Invalid month entered."
+
+
+def main():
+    """Main function to run the app."""
+    month = input("Enter the current month: ").lower()
+    print(get_garden_advice(month))
+
+
+if __name__ == "__main__":
+    main()
