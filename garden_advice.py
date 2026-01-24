@@ -51,3 +51,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+print("🌱 Tip: Water your garden early in the morning.")
+
